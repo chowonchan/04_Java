@@ -279,20 +279,55 @@ public class ConditionEx {
 		double soc  = sc.nextDouble();
 		double sci  = sc.nextDouble();
 		
+		boolean flag = false;
 		String str = "";
-		if(kor<40) str  += "국어 ";
-		if(eng<40) str  += "영어 ";
-		if(math<40)str  += "수학 ";
-		if(soc<40) str  += "사탐 ";
-		if(sci<40) str  += "과탐 ";
+		if(kor<40) flag = true; str  += "국어 ";
+		if(eng<40) flag = true; str  += "영어 ";
+		if(math<40)flag = true; str  += "수학 ";
+		if(soc<40) flag = true; str  += "사탐 ";
+		if(sci<40) flag = true; str  += "과탐 ";
+		
+		/*
+		// 40 점 미만인 과목 검사
+		boolean flag = false;
+		String str = ""; // 빈칸(자료형 : String, 내용 X
+		
+		if(kor < 40 ) {
+			flag = true;
+		str  += "국어 ";
+		}
+		if(eng < 40 ) {
+			flag = true;
+			str  += "영어 "
+		}
+		if(math < 40 ) {
+			flag = true;
+			str  += "수학 "
+		}
+		if(soc < 40 ) {
+			flag = true;
+			str  += "사탐 "
+		}
+		if(sci < 40 ) {
+			flag = true;
+			str  += "과탐 "
+		}
+		
+		// 40점 미만 과목이 존재하는 경우
+		if(flag) {
+			System.out.printf("FAIL [40점 미만 과목 : %s ]",str);
+			return;
+		}
+		 */
 		
 		
-		double score = (kor + eng + math + soc + sci) / 5;
+		double score = (double)(kor + eng + math + soc + sci) / 5;
 		
 		if(kor <40 || eng < 40 || math <40 || soc <40 || sci <40) {
 			System.out.printf("FAIL [40점 미만 과목 : %s ]", str);
 		}else if(score < 60) {
 			System.out.printf("FAIL [점수 : %.1f ( 평균 미달 )]", score);
+			return; // Early return; (중간에 메서드를 종료)
 		}else {
 			System.out.printf("PASS [점수 : %.1f / 100]",score);
 		}
