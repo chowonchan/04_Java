@@ -167,6 +167,32 @@ public class ArrayPractice {
 		}
 	}
 	
+//	/* [실습 문제 6]
+//	주민등록번호를 입력 받아 char 배열에 저장한 후 출력하세요.
+//	단, char 배열 저장 시 
+//	성별을 나타내는 숫자 이후부터 *로 저장하세요.
+//	
+//	문자열.length() : 문자열의 길이
+//	문자열.charAt(index) : 문자열 중 index번째 문자(char) 반환
+//	*/
+//	public void practice6() {
+//		// 991122-1234567
+////		char[] arr = new char["991122-1234567".length()];
+//		char[] arr = new char[14];
+//		
+//		System.out.print("주민등록번호(-포함) : ");
+//		String str = sc.next();
+//		
+//		// 주민등록번호를 char 배열 요소로 하나씩 대입
+//		for(int i = 0 ; i < str.length() ; i++) {
+//			
+//			if(i <= 7) 	arr[i] = str.charAt(i); // 성별 까지
+//			else		arr[i] = '*';			// 성별 이후
+//			
+//			System.out.print(arr[i]); // 출력
+//		}
+//	}
+	
 	public void practice7() {
 		
 		System.out.print("정수 : ");
