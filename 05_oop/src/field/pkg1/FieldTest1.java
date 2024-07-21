@@ -47,9 +47,9 @@ public class FieldTest1 {
 	
 	protected int protectedValue = 200;
 	
-	int			 defaultValue = 300;
+	int				 defaultValue = 300;
 	
-	private int  privateValue = 400;
+	private int  	privateValue = 400;
 	
 	
 	
