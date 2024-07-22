@@ -15,7 +15,7 @@ public class MemberDTO {
 	public MemberDTO() { } // 기본 생성자 (매개 변수 없음!!)
 
 
-	// [이클립스의 생성자 자동완성 기능"
+	// [이클립스의 생성자 자동완성 기능]
 	// 상단 source메뉴
 	// 또는 alt + shift + s -> 컨텍스트 메뉴에서
 	// Generate Constructor Using Fields...(단축키 O)
