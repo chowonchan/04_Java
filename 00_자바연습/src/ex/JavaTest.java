@@ -1,8 +1,10 @@
-// 주석은 JS와 동일
-// 한 줄 주석
+package ex;
+
+//주석은 JS와 동일
+//한 줄 주석
 /* 범위 주석 */
 
-// ctrl, +/- 글씨 크기 조절
+//ctrl, +/- 글씨 크기 조절
 
 public class JavaTest {
 
