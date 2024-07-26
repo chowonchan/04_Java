@@ -9,7 +9,7 @@ public class HumonService {
 		Any[] a1 = new Any[2];
 		
 		a1[0] = new Humon();
-		a1[1] =  a;
+		a1[1] = a;
 		
 		
 		for(Any a2 : a1) {
