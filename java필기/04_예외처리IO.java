@@ -131,12 +131,24 @@ Input과 Output의 약자, 컴퓨터 내부 또는 외부 장치와
 
   FileOutputStream(기반 스트림)과 BufferedOutputStream ( 보조 스트림 ) 존재
 
-      // 기반 스트림 생성
-			fos = new FileOutputStream("/io_test/byte/버퍼_바이트.txt");
+    // 스트림 참조 변수 선언
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+
+
+    // 기반 스트림 생성
+		fos = new FileOutputStream("/io_test/byte/버퍼_바이트.txt");
 			
-			// 보조 스트림 생성
-			bos = new BufferedOutputStream(fos); 
-      // 기반 스트림을 매개 변수로 전달하면 연결된다!
+		// 보조 스트림 생성
+		bos = new BufferedOutputStream(fos); 
+     // 기반 스트림을 매개 변수로 전달하면 연결된다!
+
+-[보조 스트림]
+	
+	버퍼를 이용한 "빠르고 효율적인" 파일 출력
+	 - FileOutputStream(기반 스트림)
+	 - BufferedOutputStream ( 보조 스트림 )
+	
       
 
   -{바이트 기반 스트림} : 사진 ,동영상 등

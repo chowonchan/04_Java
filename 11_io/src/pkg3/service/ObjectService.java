@@ -109,7 +109,7 @@ public class ObjectService {
 			
 			// 직렬화된 객체를 읽어와
 			// 역직렬화 후 Member 타입으로 다운 캐스팅
-			Member member = (Member)ois.readObject(); // Object 타입으로 
+			Member member = (Member)ois.readObject(); // Object 타입 
 			
 			// 확인
 			System.out.println(member);
