@@ -31,7 +31,6 @@ public class MemberDaoImpl implements MemberDao{
 	// - 회원 다수를 관리할 회원 목록( List ) 이 필요한데
 	//	 이미 파일로 저장된 회원 목록이 있으면 읽어오고
 	//	 없으면 새로 만들기
-	@SuppressWarnings("unchecked")
 	public MemberDaoImpl() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
 		// membership.dat 파일이 존재하는지 검사
@@ -107,8 +106,8 @@ public class MemberDaoImpl implements MemberDao{
 		}
 		
 	}
-	
-	
+
+
 	
 	
 	

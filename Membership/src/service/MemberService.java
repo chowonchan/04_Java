@@ -36,6 +36,43 @@ public interface MemberService {
 	public abstract List<Member> getMemberList();
 	
 	
+	/**
+	 * SeachName과 같은 이름을 지닌 회원 조회
+	 * @param SeachName
+	 * @return searchList(저장된 요소 0개 이상)
+	 */
+	List<Member> selectName(String SearchName);
+
+
+	/**
+	 * 전달 받은 회원의 금액 누적 하기
+	 * @param target
+	 * @param acc
+	 * @return 결과 문자열
+	 */
+	String updateAmount(Member target, int acc) throws IOException;
+	
+	/**
+	 * 절달 받은 회원의 번호 입력 하기
+	 * @param target
+	 * @param newPhone
+	 * @return 결과 문자열
+	 * @throws IOException
+	 */
+	String updateMember(Member target, String newPhone) throws IOException;
+
+
+
+	/**
+	 * 회원 탈퇴
+	 * @param target
+	 * @return 결과 문자열
+	 * @throws IOException
+	 */
+	String removeMember(Member target) throws IOException;
+	
+	
+	
 	
 	
 }
