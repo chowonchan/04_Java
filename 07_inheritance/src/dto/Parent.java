@@ -19,7 +19,7 @@ public class Parent extends Object{
 	// protected 접근제한자 : 
 	// - 같은 패키지 : 객체 생성 후 사용
 	//	 ex) 같은 패키지 클래스에서
-	//       Paraent p = new Parent();   p.lastName;
+	//       Parent p = new Parent();   p.lastName;
 	
 	// - 상속 관계 자식 클래스 : 자식 클래스에서 직접 사용
 	//  ex) 자식 클래스에서 lastName; 작성

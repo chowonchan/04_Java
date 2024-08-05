@@ -54,7 +54,7 @@ public class JavaApiService {
 		
 		TestDto t = new TestDto();
 		
-		// TestDto 객체의 주소를 잉요해서 만든 해시코드 확인
+		// TestDto 객체의 주소를 이용해서 만든 해시코드 확인
 		System.out.println("TestDto : " + System.identityHashCode(t));
 		
 		// TestDto객체의 필드 값을 변경

@@ -3,6 +3,7 @@ package dao;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -19,7 +20,6 @@ public class TodoListDaoImpl implements TodoListDao{
 	
 	private ObjectInputStream    ois = null;
 	private ObjectOutputStream   oos = null;
-	
 	
 	
 	// 기본 생성자
@@ -49,6 +49,43 @@ public class TodoListDaoImpl implements TodoListDao{
 		
 	}
 	
+	
+	@Override
+	public List<Todo> TodoListView() {
+		
+		return todoList;
+	}
+	
+	@Override
+	public int addTodo(Todo todo) throws FileNotFoundException, IOException {
+		
+		// 객체 출력 스트림 생성
+		
+		if(todoList.add(todo)) {
+			saveFile();
+			return todoList.size() - 1; // 마지막 인덱스 번호 반환
+		}
+		
+		return -1;
+	}
+	
+	
+	
+	// 파일 저장
+	@Override
+	public void saveFile() throws IOException {
+			
+		// memberList를 지정된 파일에 출력 (저장)
+			
+		try {
+			oos = new ObjectOutputStream( new FileOutputStream( FILE_PATH ) );
+			oos.writeObject(todoList);
+				
+		} finally {
+			if(oos != null) oos.close(); // flush() + 메모리 반환
+		}
+			
+	}
 	
 	
 	
