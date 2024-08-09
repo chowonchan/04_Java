@@ -34,7 +34,7 @@
 [객체 생성 메모리 구조]
 
 1)         3)  2)
-Nation n2  =  new Nation();
+Nation n2  =  new Nation(); 
 
 1) Stack 메모리 영역에 Nation 자료형 변수 n2를 선언
   - Nation 자료형 변수 == Nation 객체를 참조하는 참조형 변수
@@ -73,8 +73,8 @@ Nation 클래스에 정의된 내용을 토대로 객체 생성(할당)
           new 연산자를 이용해 클래스에 정의된 내용대로
           객체(Instance)를 생성
 
-          - 소멸Garbage Collection이 일정시간 마다 사용되지안흔ㄴ
-            객체를 소면 (메모리 반환)
+          - 소멸Garbage Collection이 일정시간 마다 사용되지 않는다
+            객체를 소멸 (메모리 반환)
 
 [Static] : 정적 메모리 영역 , 프로그램 실행 시 static 키워드가 붙은
           필드 / 메서드를 static 영역에 생성(할당)

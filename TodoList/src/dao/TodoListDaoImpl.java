@@ -7,57 +7,88 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import dto.Todo;
 
-public class TodoListDaoImpl implements TodoListDao{
-
-	private final String FILE_PATH = "/io_test/LocalDateTime.dat";
+public class TodoListDAOImpl implements TodoListDAO{
+	
+	private final String FILE_PATH = "TodoList.dat";
 	
 	private List<Todo> todoList = null;
 	
-	private ObjectInputStream    ois = null;
-	private ObjectOutputStream   oos = null;
+	private ObjectOutputStream oos = null;
+	private ObjectInputStream	 ois = null;
 	
 	
 	// 기본 생성자
-	public TodoListDaoImpl() throws FileNotFoundException, IOException, ClassNotFoundException {
+	public TodoListDAOImpl() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
-		// 파일이 존재하는지 검사
+		// TodoList.dat 파일이 없으면 새로운 List 생성, 있으면 읽어오기
 		File file = new File(FILE_PATH);
 		
-		if( file.exists() ) { //  존재 하다면
+		if(!file.exists()) {
+			todoList = new ArrayList<Todo>();
+			
+		} else {
 			try {
-				ois = new ObjectInputStream( new FileInputStream( FILE_PATH ));
-				
-				// 파일에서 읽어와 다운 캐스팅 해서 todoList가 참조
-				todoList = ( ArrayList<Todo> ) ois.readObject();
-				
-				
+				// 객체 생성 시 외부 파일에 작성된 List<Todo> 객체를 입력 받아 todoList에 대입
+				ois = new ObjectInputStream(new FileInputStream(FILE_PATH));
+				todoList = (ArrayList<Todo>)ois.readObject();
 			}finally {
-				if(ois == null) ois.close();
+				if(ois != null) ois.close();
 			}
 		}
 		
-		// 파일이 존재 하지 않을때
-		else {
-			// 새로운 ArrayList를 만들어서 참조
-			todoList = new ArrayList<Todo>();
-		}
-		
 	}
 	
 	
+	//-------------------------------------------------------------------------------------------------
+	
+	/* TodoList를 파일로 저장 */
 	@Override
-	public List<Todo> TodoListView() {
+	public void saveFile() throws FileNotFoundException, IOException {
+		// 예외는 throws를 던져 버리기 때문에 catch문 불필요
 		
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH));
+			oos.writeObject(todoList);
+		}finally {
+			oos.close(); // 예외 발생 여부 관계 없이 무조건 닫기!
+		}
+	}
+	
+	
+	//-------------------------------------------------------------------------------------------------
+	
+	
+	@Override
+	public List<Todo> todoListFullView() {
 		return todoList;
 	}
 	
+	
+	//-------------------------------------------------------------------------------------------------
+	
+	
 	@Override
-	public int addTodo(Todo todo) throws FileNotFoundException, IOException {
+	public Todo todoDetailView(int index) {
+		
+		// TodoList 범위 초과 시 null 반환
+		if(index < 0 || index >= todoList.size()) return null;
+		
+		return todoList.get(index);
+	}
+	
+
+	
+	//-------------------------------------------------------------------------------------------------
+	
+	
+	@Override
+	public int todoAdd(Todo todo) throws FileNotFoundException, IOException {
 		
 		// 객체 출력 스트림 생성
 		
@@ -68,26 +99,66 @@ public class TodoListDaoImpl implements TodoListDao{
 		
 		return -1;
 	}
+
+	
+	//-------------------------------------------------------------------------------------------------
 	
 	
-	
-	// 파일 저장
 	@Override
-	public void saveFile() throws IOException {
-			
-		// memberList를 지정된 파일에 출력 (저장)
-			
-		try {
-			oos = new ObjectOutputStream( new FileOutputStream( FILE_PATH ) );
-			oos.writeObject(todoList);
-				
-		} finally {
-			if(oos != null) oos.close(); // flush() + 메모리 반환
-		}
-			
+	public boolean todoComplete(int index) throws FileNotFoundException, IOException {
+		// TodoList 범위 초과 시 false 반환
+		if(index < 0 || index >= todoList.size()) return false;
+		
+		boolean complete = todoList.get(index).isComplete();
+		todoList.get(index).setComplete(!complete);
+		
+		saveFile();
+		
+		return true;
 	}
 	
 	
+	//-------------------------------------------------------------------------------------------------
 	
 	
+	@Override
+	public boolean todoUpdate(int index, String title, String detail) throws FileNotFoundException, IOException {
+		
+		// 수정된 내용 + 이전 Todo의 완료 여부, 등록일을 담은 Todo 객체 생성 
+		Todo newTodo = new Todo();
+		
+		newTodo.setTitle(title);
+		newTodo.setDetail(detail);
+		newTodo.setComplete(todoList.get(index).isComplete());
+		newTodo.setRegDate(todoList.get(index).getRegDate());
+
+		// index 번째 Todo를 새로운 Todo로 변경
+		if( todoList.set(index, newTodo) != null ) {
+			
+			// 변경 내용이 발생 했으므로 파일을 새로 저장
+			saveFile();
+			
+			return true;
+		}
+		return false;
+	}
+	
+	
+	//-------------------------------------------------------------------------------------------------
+	
+	
+	@Override
+	public Todo todoDelete(int index) throws FileNotFoundException, IOException{
+		
+		if(index < 0 || index >= todoList.size()) return null;
+		
+		Todo deletedTarget = todoList.remove(index);
+		
+		saveFile();
+		
+		return deletedTarget;
+	}
+	
+	
+
 }
