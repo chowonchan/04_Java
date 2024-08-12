@@ -8,7 +8,7 @@ public class MemberRun {
 		
 		MemberView view = new MemberView();
 		
-//		view.mainMenu();
+		view.mainMenu();
 		
 		
 		

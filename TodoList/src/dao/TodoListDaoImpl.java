@@ -13,7 +13,7 @@ import java.util.List;
 
 import dto.Todo;
 
-public class TodoListDAOImpl implements TodoListDAO{
+public class TodoListDaoImpl implements TodoListDAO{
 	
 	private final String FILE_PATH = "TodoList.dat";
 	
@@ -24,7 +24,7 @@ public class TodoListDAOImpl implements TodoListDAO{
 	
 	
 	// 기본 생성자
-	public TodoListDAOImpl() throws FileNotFoundException, IOException, ClassNotFoundException {
+	public TodoListDaoImpl() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
 		// TodoList.dat 파일이 없으면 새로운 List 생성, 있으면 읽어오기
 		File file = new File(FILE_PATH);
